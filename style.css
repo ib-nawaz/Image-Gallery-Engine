@@ -1,26 +1,33 @@
+/* =========================================
+   0. GLOBAL (body, h1)
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: darkkhaki;
 }
 
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
+    transition: all 0.5s;
 
     background:
-        linear-gradient(
-            rgba(184, 213, 255, 0.72),
-            rgba(255, 169, 241, 0.88)
-        ),
-        url("https://images.unsplash.com/photo-1500534623283-312aade485b7")
-        center / cover fixed;
+        linear-gradient(rgba(184, 213, 255, 0.72),
+            rgba(255, 169, 241, 0.88)),
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7") center / cover fixed;
+}
 
-    color: white;
+h1 {
+    color: aqua;
 }
 
 
-/* Main */
+/* =========================================
+   1. <main class="gallery-container">
+========================================= */
 
 .gallery-container {
     width: min(1400px, 94%);
@@ -29,16 +36,20 @@ body {
 }
 
 
-/* Header */
+/* =========================================
+   2. <header class="gallery-header">
+========================================= */
 
 .gallery-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
-
     margin-bottom: 30px;
 }
+
+
+/* 2.1 Title box (logo + heading) */
 
 .title-box {
     display: flex;
@@ -49,16 +60,12 @@ body {
 .logo {
     width: 50px;
     height: 50px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 15px;
-
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.15);
-
     font-size: 35px;
 }
 
@@ -67,11 +74,11 @@ body {
 }
 
 .title-box h1 span {
-    color: #6d7cff;
+    color: #ff0707;
 }
 
 
-/* Header actions */
+/* 2.2 Header actions (search area) */
 
 .header-actions {
     display: flex;
@@ -80,39 +87,25 @@ body {
     flex-wrap: wrap;
 }
 
-
-/* Search */
-
 .search-box {
     width: 700px;
     height: 42px;
-
     display: flex;
     align-items: center;
     gap: 9px;
-
     padding: 0 14px;
-
     border-radius: 13px;
-
     background: rgba(255, 255, 255, 0.09);
-
-    border: 1px solid rgba(255, 255, 255, 0.14);
-
+    border: 2px solid rebeccapurple;
     backdrop-filter: blur(12px);
-
     transition: 0.25s;
-   position: relative;
-   margin-right: 4vw;
-   border: 2px solid rebeccapurple;
-   
+    position: relative;
+    margin-right: 4vw;
 }
 
 .search-box:focus-within {
     border-color: #6d7cff;
-
-    box-shadow:
-        0 0 0 3px rgba(109, 124, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(109, 124, 255, 0.12);
 }
 
 .search-box span {
@@ -122,174 +115,94 @@ body {
 
 .search-box input {
     width: 100%;
-
     border: none;
     outline: none;
-
     background: transparent;
-
-    color: white;
-
-    font-size: 13px;
+    color: black;
+    font-size: 20px;
 }
 
 .search-box input::placeholder {
     color: #8f9ab0;
 }
-.search-img{
+
+.search-img {
     height: 100%;
     width: 10%;
-    position:absolute;
+    position: absolute;
     right: 0;
     border-radius: 20px;
-   
     background-color: inherit;
     border: none;
     cursor: pointer;
 }
-.search-img span{
-    font-size: large;
-     color: crimson;
-}
-.search-img:active{
+
+.search-img:active {
     transform: scale(0.8);
     border: 1px solid coral;
 }
 
-.more-btn{
-    height: 7vh;
-    width: 10vw;
+.search-img span {
+    font-size: large;
     color: crimson;
-    background-color: rgb(255, 164, 99);
-    cursor: pointer;
-    border-radius: 20px;
-    border: none;
-    margin: 5vh auto 2vh;
-}
-.more-btn:active{
-    transform: scale(0.8);
 }
 
-/* Tablet */
-
-@media (max-width: 950px) {
-
-    .header-actions {
-        width: 100%;
-    }
-
-    .search-box {
-        width: 100%;
-    }
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .header-actions {
-        gap: 12px;
-    }
-
-    .search-box {
-        height: 44px;
-    }
-}
-
-
-
-
-/* Filters */
-
-.filters {
+.search-img .detect {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.filters button {
-    border: none;
-
-    padding: 10px 18px;
-
-    border-radius: 12px;
-
-    background: rgba(255, 255, 255, 0.09);
-
-    color: #dce2f0;
-
-    cursor: pointer;
-
-    transition: 0.25s;
-}
-
-.filters button:hover,
-.filters button.active {
-    background: #665cff;
-    color: white;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px !important;
 }
 
 
-/* Gallery */
+/* =========================================
+   3. <section class="gallery">
+   (hidden at start, JS shows it with display: flex)
+========================================= */
 
 .gallery {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     gap: 22px;
 }
 
 
-/* Card */
+/* 3.1 Card */
 
 .card {
     flex: 0 0 calc((100% - 44px) / 3);
-
     min-width: 0;
-
     padding: 8px;
-
     border-radius: 18px;
-
-    background: rgba(8, 24, 44, 0.88);
-
+    background: rgba(226, 236, 248, 0.88);
     border: 1px solid rgba(255, 255, 255, 0.12);
-
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.22);
-
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.22);
     transition:
         transform 0.25s ease,
         border-color 0.25s ease;
+    cursor: pointer;
 }
 
 .card:hover {
     transform: translateY(-5px);
-
     border-color: rgba(120, 130, 255, 0.65);
 }
 
 
-/* Image */
+/* 3.2 Image box */
 
 .image-box {
     height: 190px;
-
     position: relative;
-
     overflow: hidden;
-
     border-radius: 13px;
 }
 
 .image-box img {
     width: 100%;
     height: 100%;
-
     display: block;
-
     object-fit: cover;
-
     transition: transform 0.4s ease;
 }
 
@@ -297,33 +210,14 @@ body {
     transform: scale(1.05);
 }
 
-
-/* Heart */
-
-.heart {
-    position: absolute;
-
-    top: 10px;
-    right: 10px;
-
-    width: 35px;
-    height: 35px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255,255,255,0.3);
-
-    background: rgba(5, 15, 28, 0.65);
-
-    color: white;
-
-    font-size: 20px;
-
-    cursor: pointer;
+.api-img {
+    z-index: 99;
+    position: relative;
+    top: 0;
 }
 
 
-/* Content */
+/* 3.3 Card content (title) */
 
 .card-content {
     padding: 13px 7px 8px;
@@ -335,41 +229,359 @@ body {
 }
 
 
+/* 3.4 Buttons (Previous / Next) */
 
-/* Description */
-
-.description {
-    height: 4vh;
-    min-height: 35px;
-
-    margin-top: 10px;
-
-    color: #aeb8ca;
-
-    font-size: 12px;
-    line-height: 1.5;
-
-    overflow-y: auto;
-
-    /* scrollbar hide */
-    scrollbar-width: none;
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width: 100%;
+    margin: auto;
 }
 
-.description::-webkit-scrollbar {
+.pre-btn,
+.more-btn {
+    height: 7vh;
+    width: 10vw;
+    color: crimson;
+    background-color: rgb(255, 164, 99);
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+    margin: 5vh 10vh;
+}
+
+.pre-btn:active,
+.more-btn:active {
+    transform: scale(0.8);
+}
+
+
+/* =========================================
+   4. <div class="welcome-box" id="welcomeBox">
+========================================= */
+
+.welcome-box {
+    min-height: 65vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    color: #f8fafc;
+    animation: welcomeFade 0.8s ease both;
+}
+
+/* 4.1 Art (emoji + glow + sparks) */
+
+.welcome-art {
+    position: relative;
+    width: 150px;
+    height: 140px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 18px;
+}
+
+.glow-circle {
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    opacity: 0.18;
+    filter: blur(12px);
+    animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+.search-emoji {
+    z-index: 1;
+    font-size: 76px;
+    filter: drop-shadow(0 8px 18px #818cf866);
+    animation: searchFloat 3s ease-in-out infinite;
+}
+
+.spark {
+    position: absolute;
+    color: #a78bfa;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.spark-one {
+    top: 8px;
+    right: 12px;
+    font-size: 28px;
+}
+
+.spark-two {
+    top: 32px;
+    left: 5px;
+    font-size: 24px;
+    animation-delay: 0.5s;
+}
+
+.spark-three {
+    bottom: 8px;
+    right: 25px;
+    font-size: 20px;
+    animation-delay: 1s;
+}
+
+/* 4.2 Heading */
+
+.welcome-box h1 {
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.25;
+    margin: 10px 0;
+}
+
+.welcome-box h1 span {
+    display: inline-block;
+    background: linear-gradient(90deg, #818cf8, #d8b4fe, #818cf8);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 4s linear infinite;
+}
+
+/* 4.3 Text */
+
+.welcome-text {
+    max-width: 440px;
+    color: #021fad;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 12px 0 24px;
+}
+
+/* 4.4 Search message */
+
+.search-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    padding: 15px 24px;
+    max-width: 100%;
+    border: 1px solid #6366f155;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #6366f11a, #a855f71a);
+    color: #0f77ff;
+    font-size: 14px;
+    box-shadow: 0 8px 35px #6366f10c;
+    animation: hintPulse 3s ease-in-out infinite;
+}
+
+.typing-dot {
+    flex-shrink: 0;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 12px #a78bfa;
+    animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+/* 4.5 Bottom text */
+
+.welcome-bottom {
+    margin-top: 25px;
+    color: #abff7a;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   5. <div class="click-img"> (popup)
+   (hidden at start, JS shows it with display: flex)
+========================================= */
+.click-img {
     display: none;
+    /* JS changes this to flex */
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    /* centers it, no transform needed */
+    width: min(1100px, 92vw);
+    height: min(90vh, 800px);
+    padding: 64px 16px 16px;
+    /* space on top for the buttons */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(224, 192, 255);
+    border-radius: 20px;
+    z-index: 999;
 }
 
 
-/* =========================
-   TABLET
-   2 CARDS PER ROW
-========================= */
+.click-img img {
+    max-width: 90vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
 
+
+/* Buttons sit in the top-right corner of the popup */
+
+.cancel,
+.download {
+    position: absolute;
+    top: 12px;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.cancel {
+    right: 12px;
+}
+
+.download {
+    right: 82px;
+    /* 12px + 40px button + 10px gap */
+}
+
+.cancel:hover,
+.download:hover {
+    transform: scale(1.1);
+}
+
+.cancel:active,
+.download:active {
+    transform: scale(0.9);
+}
+
+.download svg {
+    width: 22px;
+    height: 22px;
+}
+
+
+
+/* =========================================
+   6. ANIMATIONS
+========================================= */
+
+@keyframes welcomeFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes searchFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        transform: scale(0.9);
+        opacity: 0.13;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.3;
+    }
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(0.8) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(25deg);
+    }
+}
+
+@keyframes gradientMove {
+    to {
+        background-position: 200% center;
+    }
+}
+
+@keyframes hintPulse {
+
+    0%,
+    100% {
+        border-color: #6366f133;
+    }
+
+    50% {
+        border-color: #a78bfa88;
+    }
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.85);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+
+/* =========================================
+   7. RESPONSIVE (all media queries together)
+========================================= */
+
+/* Tablet: 2 cards per row */
 @media (max-width: 950px) {
 
     .gallery-header {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .header-actions {
+        width: 100%;
+    }
+
+    .search-box {
+        width: 100%;
     }
 
     .card {
@@ -381,12 +593,7 @@ body {
     }
 }
 
-
-/* =========================
-   MOBILE
-   1 CARD PER ROW
-========================= */
-
+/* Mobile: 1 card per row */
 @media (max-width: 600px) {
 
     .gallery-container {
@@ -398,21 +605,16 @@ body {
         margin-bottom: 22px;
     }
 
-    .filters {
-        width: 100%;
-
-        overflow-x: auto;
-        flex-wrap: nowrap;
-
-        scrollbar-width: none;
+    .header-actions {
+        gap: 12px;
     }
 
-    .filters::-webkit-scrollbar {
-        display: none;
+    .search-box {
+        height: 44px;
     }
 
-    .filters button {
-        flex-shrink: 0;
+    .title-box h1 {
+        font-size: 30px;
     }
 
     .card {
@@ -423,7 +625,44 @@ body {
         height: 200px;
     }
 
-    .title-box h1 {
-        font-size: 30px;
+    .more-btn {
+        height: 9vh;
+        width: 25vw;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+
+    .welcome-box {
+        min-height: 60vh;
+        padding: 25px 16px;
+    }
+
+    .search-message {
+        padding: 13px 15px;
+        font-size: 12px;
+    }
+
+    .welcome-bottom {
+        font-size: 11px;
+    }
+
+    .pre-btn {
+        min-width: 20vw;
+    }
+
+    .more-btn {
+        max-height: 7vh ;
+        min-width: 16vw;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .welcome-box,
+    .welcome-box * {
+        animation: none !important;
     }
 }
